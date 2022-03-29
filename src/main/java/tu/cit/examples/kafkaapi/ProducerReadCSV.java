@@ -16,12 +16,12 @@ import java.util.Properties;
 public class ProducerReadCSV {
 
     private static final Logger logger = LogManager.getLogger();
-    public static void main(String[] args)  {
+    public static void main(String[] args) throws InterruptedException {
 
         Properties props = new Properties();
-        props.put(ProducerConfig.CLIENT_ID_CONFIG,"my-app-readcsv");
-        props.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG,"localhost:9092");
-        props.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
+        //props.put(ProducerConfig.CLIENT_ID_CONFIG,"my-app-readcsv");
+        props.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG,"10.151.34.116:6667");
+        props.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
         props.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, JsonSerializer.class);
 
 
@@ -33,7 +33,8 @@ public class ProducerReadCSV {
         List studentList = readCSV.ReadCSVFile(); //It will return the student list
         for (Object studentObject : studentList) {
             student stdobject = (student) studentObject;
-            producer.send(new ProducerRecord<String, student>("student",stdobject.getDept(),stdobject));
+            Thread.sleep(3000);
+            producer.send(new ProducerRecord<String, student>("Newtopic3",stdobject.getDept(),stdobject));
          }
         logger.info("Producer has sent all employee records successfully...");
         producer.close();
