@@ -22,20 +22,13 @@ public class ReadCSV {
 
             //This method is not recommended for large CSV File
             stdlist = csvToBean.parse();
-//            for (Object std1 : stdlist) {
-//                student std = (student) std1;
-//                System.out.println(std.getStudentid() + " : " + std.getName() + " : " + std.getDept() + " : " + std.getSubject() + " : " + std.getMarks());
-//                //System.out.println(std.getStudentid() + " : " + std.getName() + " : " + std.getDept() + " : " + std.getSubject());
-//            }
+
             csvReader.close();
         }catch(Exception FileNotFoundException){
             //e.printStackTrace();
             System.out.println("File is not available...");
         }
-        //This is good for large csv file
-//        for(student std : (Iterable<student>) csvToBean){
-//            System.out.println(std.getStudentid() + " : " + std.getName() + " : " + std.getDept() + " : " + std.getSubject() + " : " + std.getMarks());
-//        }
+
 
         return stdlist;
     }

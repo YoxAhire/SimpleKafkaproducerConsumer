@@ -13,7 +13,7 @@ import java.util.Properties;
 import java.util.concurrent.ExecutionException;
 
 
-public class ProducerReadCSV {
+public class ProducerReadCSVSync {
 
 
     public static void main(String[] args) throws InterruptedException, ExecutionException {
@@ -24,17 +24,24 @@ public class ProducerReadCSV {
         props.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, JsonSerializer.class);
 
 
-
-
         KafkaProducer<String,student> producer = new KafkaProducer<String,student>(props);
 
+        RecordMetadata metadata;
 
         ReadCSV readCSV = new ReadCSV();
         List studentList = readCSV.ReadCSVFile(); //It will return the student list
         for (Object studentObject : studentList) {
             student stdobject = (student) studentObject;
-            Thread.sleep(2000);
-            producer.send(new ProducerRecord<String, student>("rr18",stdobject.getDept(),stdobject));
+            Thread.sleep(1000);
+            //producer.send(new ProducerRecord<String, student>("r20",stdobject.getDept(),stdobject));
+
+            metadata = (RecordMetadata) producer.send(new ProducerRecord<String, student>("rr18",stdobject.getDept(),stdobject)).get();
+
+            System.out.println(stdobject);
+            System.out.println("Record return to Offset: "+metadata.offset());
+            System.out.println("Record return to Partition: "+metadata.partition());
+            System.out.println("Record return to Topic: "+metadata.topic());;
+
 
         }
 

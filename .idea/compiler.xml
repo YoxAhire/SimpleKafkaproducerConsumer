@@ -6,8 +6,8 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="ProducerReadCSV" />
         <module name="2_Producer-Read-CSV" />
+        <module name="ProducerReadCSV" />
       </profile>
     </annotationProcessing>
   </component>
