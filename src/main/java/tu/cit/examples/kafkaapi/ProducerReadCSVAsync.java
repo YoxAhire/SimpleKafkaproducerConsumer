@@ -1,5 +1,10 @@
 package tu.cit.examples.kafkaapi;
-import org.apache.kafka.clients.producer.*;
+//import org.apache.kafka.clients.producer.*;
+import org.apache.kafka.clients.producer.Callback;
+import org.apache.kafka.clients.producer.KafkaProducer;
+import org.apache.kafka.clients.producer.ProducerConfig;
+import org.apache.kafka.clients.producer.ProducerRecord;
+import org.apache.kafka.clients.producer.RecordMetadata;
 import tu.cit.examples.kafkaapi.serde.JsonSerializer;
 import org.apache.kafka.common.serialization.StringSerializer;
 import tu.cit.examples.kafkaapi.schemas.student;
@@ -15,9 +20,7 @@ public class ProducerReadCSVAsync {
         props.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG,"10.151.34.116:6667");
         props.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
         props.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, JsonSerializer.class);
-
-
-
+        props.put(ProducerConfig.ACKS_CONFIG,"1");
 
         KafkaProducer<String,student> producer = new KafkaProducer<String,student>(props);
 
@@ -25,10 +28,11 @@ public class ProducerReadCSVAsync {
         ReadCSV readCSV = new ReadCSV();
         List studentList = readCSV.ReadCSVFile(); //It will return the student list
 
+        Long current_time = System.currentTimeMillis();
         for (Object studentObject : studentList) {
             student stdobject = (student) studentObject;
-            Thread.sleep(1000);
-            ProducerRecord<String, student> record    =  new ProducerRecord<String, student>("rr18",stdobject.getDept(),stdobject);
+            //Thread.sleep(1000);
+            ProducerRecord<String, student> record    =  new ProducerRecord<String, student>("rr22",stdobject.getDept(),stdobject);
 
             try {
                 producer.send(record, new MyCallBack(stdobject.toString()));
@@ -38,12 +42,12 @@ public class ProducerReadCSVAsync {
             }
 
         }
-
+        System.out.println("required time : "+(System.currentTimeMillis()-current_time));
         producer.close();
     }
 
 }
-class MyCallBack implements Callback{
+class MyCallBack implements Callback {
 
     private String msg;
 
@@ -53,17 +57,19 @@ class MyCallBack implements Callback{
 
     public void onCompletion(RecordMetadata metadata, Exception e) {
 
+
+
         if(e != null)
         {
             System.out.println("Producer failed with an exception "+e);
 
         }else{
 
-            //System.out.println("Producer call successfully sent the msg to Broker ");
+        /*    //System.out.println("Producer call successfully sent the msg to Broker ");
             System.out.println(msg);
             System.out.println("Record return to Offset: "+metadata.offset());
             System.out.println("Record return to Partition: "+metadata.partition());
-            System.out.println("Record return to Topic: "+metadata.topic());;
+            System.out.println("Record return to Topic: "+metadata.topic());;*/
         }
 
     }

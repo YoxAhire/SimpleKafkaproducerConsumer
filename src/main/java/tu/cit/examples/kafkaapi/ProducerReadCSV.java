@@ -31,12 +31,17 @@ public class ProducerReadCSV {
 
         ReadCSV readCSV = new ReadCSV();
         List studentList = readCSV.ReadCSVFile(); //It will return the student list
+
+        Long current_time = System.currentTimeMillis();
+
         for (Object studentObject : studentList) {
             student stdobject = (student) studentObject;
-            Thread.sleep(2000);
-            producer.send(new ProducerRecord<String, student>("rr18",stdobject.getDept(),stdobject));
+
+            producer.send(new ProducerRecord<String, student>("rr135",stdobject.getDept(),stdobject));
 
         }
+
+        System.out.println("required time : "+(System.currentTimeMillis()-current_time));
 
         producer.close();
     }

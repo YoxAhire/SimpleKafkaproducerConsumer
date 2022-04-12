@@ -18,6 +18,9 @@ public class student {
     @CsvBindByName
     public double marks;
 
+    @CsvBindByName
+    public String result;
+
     public int getStudentid() {
         return studentid;
     }
@@ -58,6 +61,15 @@ public class student {
         this.marks = marks;
     }
 
+
+    public String getResult() {
+        return result;
+    }
+
+    public void setResult(String result) {
+        this.result = result;
+    }
+
     @Override
     public String toString() {
         return "student{" +
@@ -66,6 +78,7 @@ public class student {
                 ", dept='" + dept + '\'' +
                 ", subject='" + subject + '\'' +
                 ", marks=" + marks +
+                ", result='" + result + '\'' +
                 '}';
     }
 }

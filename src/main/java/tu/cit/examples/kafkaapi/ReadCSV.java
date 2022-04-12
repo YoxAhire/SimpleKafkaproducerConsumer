@@ -9,7 +9,7 @@ import java.io.FileReader;
 import java.util.List;
 
 public class ReadCSV {
-    public String csvFileName = "data/student.csv";
+    public String csvFileName = "data/student1.csv";
     public List stdlist;
     public List ReadCSVFile()  {
 

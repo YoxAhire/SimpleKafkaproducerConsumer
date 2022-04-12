@@ -1,21 +1,26 @@
-studentid,name,department,subject,marks
-100,"Amir","CS","DBMS",98
-200,"Isbu Noor","IT","Networking",87
-300,"Moshin Khan","CE","DBMS",74
-400,"Amjath","IT","Networking",99
-500,"Muntazir","IT","Security",81
-600,"Nasim","IT","Networking",76
-700,"yogesh","Non IT","ETC",80
-800,"Ritesh","Non IT","ETC",80
-900,"Dinesh","IT","ETC",80
-101,"deep","CS","DBMS",90
-202,"dhrumil Noor","IT","Networking",87
-303,"popat b","CE","DBMS",88
-404,"vikas","IT","Networking",99
-505,"shoham","IT","Security",87
-606,"dinesh","IT","Networking",79
-707,"bala","Non IT","ETC",88
-808,"prince","Non IT","ETC",82
-909,"harsh","IT","ETC",83
-102,"qwe","Non IT","ETC",82
-202,"asd","IT","ETC",83
+studentid,name,department,subject,marks,result
+100,"Amir","CS","DBMS",98,"pass"
+200,"Isbu Noor","IT","Networking",87,"fail"
+300,"Moshin Khan","CIVIL","DBMS",74,"pass"
+400,"Amjath","IT","Networking",99,"fail"
+500,"Muntazir","IT","Security",81,"pass"
+600,"Nasim","Mech","Networking",76,"fail"
+700,"yogesh","Non IT","ETC",80,"pass"
+800,"Ritesh","Non IT","ETC",80,"fail"
+900,"Dinesh","IT","ETC",80,"fail"
+101,"deep","CS","DBMS",90,"fail"
+202,"dhrumil Noor","IT","Networking",87,"pass"
+303,"popat b","Mech","DBMS",88,"pass"
+404,"vikas","Mech","Networking",99,"fail"
+505,"shoham","IT","Security",87,"pass"
+606,"dinesh","IT","Networking",79,"pass"
+707,"bala","Non IT","ETC",88,"pass"
+808,"prince","Non IT","ETC",82,"pass"
+909,"harsh","IT","ETC",83,"fail"
+102,"qwe","Non IT","ETC",82,"fail"
+202,"asd","IT","ETC",83,"fail"
+203,"jayesh A","IT","ETC",87,"pass"
+203,"rahul s","Mech","ETC",87,"pass"
+203,"rohit s","CIVIL","ETC",89,"pass"
+206,"Amol bhamre","CE","ETC",65,"fail"
+207,"vishal bhamre","Mech","ED",55,"fail"

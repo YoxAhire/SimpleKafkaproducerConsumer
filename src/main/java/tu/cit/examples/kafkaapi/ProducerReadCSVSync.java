@@ -22,7 +22,7 @@ public class ProducerReadCSVSync {
         props.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG,"10.151.34.116:6667");
         props.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
         props.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, JsonSerializer.class);
-
+        props.put(ProducerConfig.ACKS_CONFIG,"-1");
 
         KafkaProducer<String,student> producer = new KafkaProducer<String,student>(props);
 
@@ -30,21 +30,25 @@ public class ProducerReadCSVSync {
 
         ReadCSV readCSV = new ReadCSV();
         List studentList = readCSV.ReadCSVFile(); //It will return the student list
+
+        Long current_time = System.currentTimeMillis();
+
         for (Object studentObject : studentList) {
             student stdobject = (student) studentObject;
-            Thread.sleep(1000);
+            //Thread.sleep(1000);
             //producer.send(new ProducerRecord<String, student>("r20",stdobject.getDept(),stdobject));
 
-            metadata = (RecordMetadata) producer.send(new ProducerRecord<String, student>("rr18",stdobject.getDept(),stdobject)).get();
+            metadata = (RecordMetadata) producer.send(new ProducerRecord<String, student>("rr22",stdobject.getDept(),stdobject)).get();
 
-            System.out.println(stdobject);
+            /*System.out.println(stdobject);
             System.out.println("Record return to Offset: "+metadata.offset());
             System.out.println("Record return to Partition: "+metadata.partition());
-            System.out.println("Record return to Topic: "+metadata.topic());;
+            System.out.println("Record return to Topic: "+metadata.topic());;*/
 
 
         }
 
+        System.out.println("required time : "+(System.currentTimeMillis()-current_time));
         producer.close();
     }
 
