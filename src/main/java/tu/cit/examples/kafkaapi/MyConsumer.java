@@ -23,18 +23,19 @@ public class MyConsumer {
 
         ConfigProps.put(ConsumerConfig.CLIENT_ID_CONFIG,"ConfID2");
 
-        ConfigProps.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, "10.151.34.116:6667");
+        //ConfigProps.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, "10.151.34.116:6667,10.151.33.7:6667");
+        ConfigProps.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, "10.151.32.197:6667,10.151.32.226:6667");
         ConfigProps.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
         ConfigProps.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, JsonDeserializer.class);
 
         ConfigProps.put(JsonDeserializer.VALUE_CLASS_NAME_CONFIG,student.class);
 
-        ConfigProps.put(ConsumerConfig.GROUP_ID_CONFIG,"nice123");
+        ConfigProps.put(ConsumerConfig.GROUP_ID_CONFIG,"nice124");
 
         ConfigProps.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG,"earliest");
 
         KafkaConsumer<String, student> consumer = new KafkaConsumer<String, student>(ConfigProps);
-        consumer.subscribe(Arrays.asList("rr135"));
+        consumer.subscribe(Arrays.asList("rr143"));
 
         while (true){
             System.out.println("response:-");

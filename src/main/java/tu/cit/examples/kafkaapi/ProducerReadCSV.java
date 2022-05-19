@@ -19,9 +19,12 @@ public class ProducerReadCSV {
     public static void main(String[] args) throws InterruptedException, ExecutionException {
 
         Properties props = new Properties();
-        props.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG,"10.151.34.116:6667");
+        //props.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG,"10.151.34.116:6667,10.151.33.7:6667");
+        props.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG,"10.151.32.197:6667,10.151.32.226:6667");
+        //props.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG,"10.151.32.238:9092");
         props.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
         props.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, JsonSerializer.class);
+
 
 
 
@@ -37,7 +40,7 @@ public class ProducerReadCSV {
         for (Object studentObject : studentList) {
             student stdobject = (student) studentObject;
 
-            producer.send(new ProducerRecord<String, student>("rr135",stdobject.getDept(),stdobject));
+            producer.send(new ProducerRecord<String, student>("rrr11",stdobject.getDept(),stdobject));
 
         }
 

@@ -38,7 +38,7 @@ public class ProducerReadCSVSync {
             //Thread.sleep(1000);
             //producer.send(new ProducerRecord<String, student>("r20",stdobject.getDept(),stdobject));
 
-            metadata = (RecordMetadata) producer.send(new ProducerRecord<String, student>("rr22",stdobject.getDept(),stdobject)).get();
+            metadata = (RecordMetadata) producer.send(new ProducerRecord<String, student>("rr135",stdobject.getDept(),stdobject)).get();
 
             /*System.out.println(stdobject);
             System.out.println("Record return to Offset: "+metadata.offset());
